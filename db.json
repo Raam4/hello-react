@@ -1,0 +1,60 @@
+{
+  "notes": [
+    {
+      "title": "First Note",
+      "content": "This is the first note.",
+      "lastEdited": "7/9/2022, 14:15:12",
+      "id": 1,
+      "archived": false
+    },
+    {
+      "title": "Second Note",
+      "content": "This is the second note.",
+      "lastEdited": "7/9/2022, 14:15:10",
+      "id": 2,
+      "archived": false
+    },
+    {
+      "title": "Third Note",
+      "content": "This is the third note.",
+      "lastEdited": "7/9/2022, 14:15:08",
+      "id": 3,
+      "archived": false
+    },
+    {
+      "title": "Fourth Note",
+      "content": "This is the fourth note.",
+      "lastEdited": "7/9/2022, 14:15:06",
+      "id": 4,
+      "archived": false
+    },
+    {
+      "title": "Fifth Note",
+      "content": "This is the fifth note.",
+      "lastEdited": "7/9/2022, 14:15:04",
+      "id": 5,
+      "archived": false
+    },
+    {
+      "title": "Sixth Note",
+      "content": "This is the sixth note.",
+      "lastEdited": "7/9/2022, 14:15:02",
+      "id": 6,
+      "archived": false
+    },
+    {
+      "title": "Seventh Note",
+      "content": "This is the seventh note.",
+      "lastEdited": "7/9/2022, 14:15:00",
+      "id": 7,
+      "archived": false
+    },
+    {
+      "title": "Eighth Note",
+      "content": "This is the eighth note",
+      "lastEdited": "7/9/2022, 14:14:48",
+      "id": 8,
+      "archived": false
+    }
+  ]
+}
