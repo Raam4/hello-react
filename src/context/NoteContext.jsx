@@ -1,9 +1,11 @@
 import { useState, useEffect, createContext } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export const NoteContext = createContext();
 
 export const NoteContextProvider = ({ children }) => {
 
+    const location = useLocation();
     const [modalIsOpen, setIsOpen] = useState(false);
     const [notes, setNotes] = useState([]);
     const [modalNote, setModalNote] = useState({
@@ -14,10 +16,10 @@ export const NoteContextProvider = ({ children }) => {
     useEffect( () => {
         const getNotes = async () => {
           const notesFromServer = await fetchNotes();
-          setNotes(notesFromServer);
+          setNotes((location.pathname === '/archived' ? notesFromServer.filter( ( note ) => note.archived) : notesFromServer.filter( ( note ) => !note.archived)));
         }
         getNotes();
-    }, []);
+    }, [location]);
 
     const openNewModal = () => {
         setIsOpen(true);
@@ -56,7 +58,8 @@ export const NoteContextProvider = ({ children }) => {
     const addNote = async (note) => {
         const noteToSave = {
             ...note,
-            lastEdited: new Date(Date.now()).toLocaleString()
+            lastEdited: new Date(Date.now()).toLocaleString(),
+            archived: false
         }
         const res = await fetch('http://localhost:5000/notes', {
             method: 'POST',

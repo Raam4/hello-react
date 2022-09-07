@@ -50,7 +50,7 @@ const Notes = () => {
                 contentLabel="Example Modal"
             >
                 <div className='flex justify-between p-4'>
-                    <h2 className='text-3xl'>Add Note</h2>
+                    <h2 className='text-3xl'>Create/Edit note</h2>
                     <Button color="bg-red-500" onClick={() => closeModal()}>X</Button>
                 </div>
                 <div className="block p-8 w-4/5 mx-auto">
