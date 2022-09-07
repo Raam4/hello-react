@@ -1,7 +1,7 @@
 # My Notes (React First App)
 
-This is my first react project after completing Codecademy's course (https://www.codecademy.com/learn/react-101)
-It includes tailwind for styles and JSON-server for mock backend
+This is my first react project after completing Codecademy's course (https://www.codecademy.com/learn/react-101).
+It includes Tailwindcss for styles and JSON-server for mock backend.
 
 ## Usage
 
