@@ -25,13 +25,14 @@
       "title": "Fourth Note",
       "content": "This is the fourth note.",
       "lastEdited": "7/9/2022, 15:42:53",
-      "id": 4
+      "id": 4,
+      "archived": false
     },
     {
       "title": "Fifth Note",
       "content": "This is the fifth note.",
       "lastEdited": "7/9/2022, 16:31:12",
-      "archived": true,
+      "archived": false,
       "id": 5
     }
   ]

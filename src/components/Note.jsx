@@ -17,7 +17,7 @@ const Note = ({ note }) => {
             <div className="w-full p-4 flex flex-col justify-between leading-normal">
                 <div className="mb-8">
                     <div className="text-gray-900 font-bold text-xl mb-2">{note.title}</div>
-                    <p className="text-gray-700 text-sm">Last edited: {note.lastEdited}</p>
+                    <p className="text-gray-700 text-sm">Last edited: {note.updatedAt.slice(0, 10)}</p>
                 </div>
                 <div className="flex justify-end items-center gap-1">
                     <Button color={note.archived ? "bg-blue-500" : "bg-gray-500"} onClick={() => onToggle(note.id)}>

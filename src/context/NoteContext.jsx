@@ -5,6 +5,7 @@ export const NoteContext = createContext();
 
 export const NoteContextProvider = ({ children }) => {
 
+    const apiUrl = import.meta.env.VITE_API_URL;
     const location = useLocation();
     const [modalIsOpen, setIsOpen] = useState(false);
     const [notes, setNotes] = useState([]);
@@ -24,6 +25,7 @@ export const NoteContextProvider = ({ children }) => {
     }
 
     useEffect( () => {
+        console.log(apiUrl)
         getNotes();
     }, [location]);
 
@@ -50,24 +52,19 @@ export const NoteContextProvider = ({ children }) => {
     }
 
     const fetchNotes = async () => {
-        const res = await fetch('http://localhost:5000/notes');
+        const res = await fetch(apiUrl);
         const data = await res.json();
         return data;
     }
 
     const fetchNote = async (id) => {
-        const res = await fetch(`http://localhost:5000/notes/${id}`);
+        const res = await fetch(`${apiUrl}/${id}`);
         const data = await res.json();
         return data;
     }
 
     const addNote = async (note) => {
-        const noteToSave = {
-            ...note,
-            lastEdited: new Date(Date.now()).toLocaleString(),
-            archived: false
-        }
-        const res = await fetch('http://localhost:5000/notes', {
+        const res = await fetch(apiUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,7 +77,7 @@ export const NoteContextProvider = ({ children }) => {
     }
 
     const deleteNote = async (id) => {
-        const res = await fetch(`http://localhost:5000/notes/${id}`, {
+        const res = await fetch(`${apiUrl}/${id}`, {
             method: 'DELETE'
         });
         res.status === 200
@@ -90,12 +87,8 @@ export const NoteContextProvider = ({ children }) => {
             alert('Error deleting this note');
     }
 
-    const editNote = async (id, editedNote) => {
-        const noteToSave = {
-            ...editedNote,
-            lastEdited: new Date(Date.now()).toLocaleString()
-        }
-        const res = await fetch(`http://localhost:5000/notes/${id}`, {
+    const editNote = async (id, noteToSave) => {
+        const res = await fetch(`${apiUrl}/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -112,8 +105,8 @@ export const NoteContextProvider = ({ children }) => {
 
     const toggleArchived = async (id) => {
         const noteToToggle = await fetchNote(id);
-        const updNote = { ...noteToToggle, archived: !noteToToggle.archived };
-        const res = await fetch(`http://localhost:5000/notes/${id}`, {
+        const updNote = { archived: !noteToToggle.archived };
+        const res = await fetch(`${apiUrl}/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
