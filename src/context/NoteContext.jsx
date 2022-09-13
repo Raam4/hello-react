@@ -25,7 +25,6 @@ export const NoteContextProvider = ({ children }) => {
     }
 
     useEffect( () => {
-        console.log(apiUrl)
         getNotes();
     }, [location]);
 
@@ -52,19 +51,19 @@ export const NoteContextProvider = ({ children }) => {
     }
 
     const fetchNotes = async () => {
-        const res = await fetch(apiUrl);
+        const res = await fetch(`${apiUrl}/notes`);
         const data = await res.json();
         return data;
     }
 
     const fetchNote = async (id) => {
-        const res = await fetch(`${apiUrl}/${id}`);
+        const res = await fetch(`${apiUrl}/notes/${id}`);
         const data = await res.json();
         return data;
     }
 
     const addNote = async (note) => {
-        const res = await fetch(apiUrl, {
+        const res = await fetch(`${apiUrl}/notes`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -77,7 +76,7 @@ export const NoteContextProvider = ({ children }) => {
     }
 
     const deleteNote = async (id) => {
-        const res = await fetch(`${apiUrl}/${id}`, {
+        const res = await fetch(`${apiUrl}/notes/${id}`, {
             method: 'DELETE'
         });
         res.status === 200
@@ -88,7 +87,7 @@ export const NoteContextProvider = ({ children }) => {
     }
 
     const editNote = async (id, noteToSave) => {
-        const res = await fetch(`${apiUrl}/${id}`, {
+        const res = await fetch(`${apiUrl}/notes/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -106,7 +105,7 @@ export const NoteContextProvider = ({ children }) => {
     const toggleArchived = async (id) => {
         const noteToToggle = await fetchNote(id);
         const updNote = { archived: !noteToToggle.archived };
-        const res = await fetch(`${apiUrl}/${id}`, {
+        const res = await fetch(`${apiUrl}/notes/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
