@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Header />
-      <main className="grid grid-cols-1 gap-1 justify-items-center my-4 md:grid-cols-2 sm:mx-8">
+      <main className="grid grid-cols-1 gap-1 justify-items-center mt-4 mb-16 md:grid-cols-2 sm:mx-8">
         <Notes />
       </main>
       <Footer />

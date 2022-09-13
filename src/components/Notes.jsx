@@ -45,9 +45,35 @@ const Notes = () => {
                 isOpen={modalIsOpen}
                 /* onAfterOpen={afterOpenModal} */
                 onRequestClose={closeModal}
-                className="absolute min-w-[320px] top-5 inset-x-0 bottom-40 lg:left-60 lg:right-60 bg-gray-300 rounded-lg shadow-2xl overflow-y-auto"
-                overlayClassName="fixed inset-y-40 inset-x-60"
                 contentLabel="Example Modal"
+                style={{
+                    overlay: {
+                      position: 'fixed',
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      bottom: 0,
+                      backgroundColor: 'rgba(255, 255, 255, 0.75)'
+                    },
+                    content: {
+                      position: 'absolute',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                      maxWidth: '520px',
+                      maxHeight: '410px',
+                      top: '40px',
+                      left: '40px',
+                      right: '40px',
+                      bottom: '40px',
+                      border: '1px solid #ccc',
+                      background: '#fff',
+                      overflow: 'auto',
+                      WebkitOverflowScrolling: 'touch',
+                      borderRadius: '4px',
+                      outline: 'none',
+                      padding: '20px'
+                    }
+                  }}
             >
                 <div className='flex justify-between p-4'>
                     <h2 className='text-3xl'>Create/Edit note</h2>
