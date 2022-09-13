@@ -13,11 +13,17 @@ export const NoteContextProvider = ({ children }) => {
         content: ''
     });
 
+    const getNotes = async () => {
+        const notesFromServer = await fetchNotes();
+        setNotes(
+            (location.pathname === '/archived' ?
+                notesFromServer.filter( ( note ) => note.archived)
+            :
+                notesFromServer.filter( ( note ) => !note.archived))
+        );
+    }
+
     useEffect( () => {
-        const getNotes = async () => {
-          const notesFromServer = await fetchNotes();
-          setNotes((location.pathname === '/archived' ? notesFromServer.filter( ( note ) => note.archived) : notesFromServer.filter( ( note ) => !note.archived)));
-        }
         getNotes();
     }, [location]);
 
@@ -77,8 +83,11 @@ export const NoteContextProvider = ({ children }) => {
         const res = await fetch(`http://localhost:5000/notes/${id}`, {
             method: 'DELETE'
         });
-        console.log(res);
-        res.status === 200 ? setNotes(notes.filter((note) => note.id !== id )) : alert('Error deleting this note');
+        res.status === 200
+        ?
+            setNotes(notes.filter((note) => note.id !== id ))
+        :
+            alert('Error deleting this note');
     }
 
     const editNote = async (id, editedNote) => {
@@ -111,12 +120,7 @@ export const NoteContextProvider = ({ children }) => {
             },
             body: JSON.stringify(updNote)
         });
-        const data = await res.json();
-        setNotes(
-            notes.map((note) =>
-                note.id === id ? { ...note, archived: data.archived } : note
-            )
-        );
+        res.status === 200 ? getNotes() : alert('Error editing this note');
     }
 
     return (

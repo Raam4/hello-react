@@ -15,10 +15,14 @@ const Header = ({ title }) => {
     return (
         <header className="flex m-8">
             <h1 className="text-5xl mr-4">{title}</h1>
-            <Button onClick={ () => openNewModal() }><HiOutlinePlusCircle /></Button>
             {
                 location.pathname === '/archived' ?
-                    <Link className={linkClass} to="/">MyNotes</Link> : <Link className={linkClass} to="/archived">Archived</Link>
+                    <Link className={linkClass} to="/">MyNotes</Link>
+                    :
+                    <>
+                        <Button onClick={ () => openNewModal() }><HiOutlinePlusCircle /></Button>
+                        <Link className={linkClass} to="/archived">Archived</Link>
+                    </>
             }
         </header>
     );
