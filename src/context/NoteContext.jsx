@@ -51,13 +51,13 @@ export const NoteContextProvider = ({ children }) => {
     }
 
     const fetchNotes = async () => {
-        const res = await fetch(apiUrl);
+        const res = await fetch(`${apiUrl}/notes`);
         const data = await res.json();
         return data;
     }
 
     const fetchNote = async (id) => {
-        const res = await fetch(`${apiUrl}/${id}`);
+        const res = await fetch(`${apiUrl}/notes/${id}`);
         const data = await res.json();
         return data;
     }
@@ -68,7 +68,7 @@ export const NoteContextProvider = ({ children }) => {
             lastEdited: new Date(Date.now()).toLocaleString(),
             archived: false
         }
-        const res = await fetch(apiUrl, {
+        const res = await fetch(`${apiUrl}/notes`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -81,7 +81,7 @@ export const NoteContextProvider = ({ children }) => {
     }
 
     const deleteNote = async (id) => {
-        const res = await fetch(`${apiUrl}/${id}`, {
+        const res = await fetch(`${apiUrl}/notes/${id}`, {
             method: 'DELETE'
         });
         res.status === 200
@@ -96,7 +96,7 @@ export const NoteContextProvider = ({ children }) => {
             ...editedNote,
             lastEdited: new Date(Date.now()).toLocaleString()
         }
-        const res = await fetch(`${apiUrl}/${id}`, {
+        const res = await fetch(`${apiUrl}/notes/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -114,7 +114,7 @@ export const NoteContextProvider = ({ children }) => {
     const toggleArchived = async (id) => {
         const noteToToggle = await fetchNote(id);
         const updNote = { ...noteToToggle, archived: !noteToToggle.archived };
-        const res = await fetch(`${apiUrl}/${id}`, {
+        const res = await fetch(`${apiUrl}/notes/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
